@@ -52,7 +52,8 @@ COPY scheduler /etc/cron.d/scheduler
 # Run the cron
 RUN crontab /etc/cron.d/scheduler
 
-# Grant permission to start script
+# Copy start script
+COPY start.sh .
 RUN chmod +x ./start.sh
 
 # Default command
