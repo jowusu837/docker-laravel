@@ -1,5 +1,7 @@
 FROM php:7.2-fpm-stretch
 
+LABEL maintainer="jowusu837@gmail.com"
+
 # Set working directory
 WORKDIR /var/www
 
