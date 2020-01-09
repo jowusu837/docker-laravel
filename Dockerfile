@@ -1,5 +1,7 @@
 FROM php:7.2-fpm-stretch
 
+LABEL maintainer="jowusu837@gmail.com"
+
 # Set working directory
 WORKDIR /var/www
 
@@ -49,3 +51,5 @@ COPY scheduler /etc/cron.d/scheduler
 
 # Run the cron
 RUN crontab /etc/cron.d/scheduler
+
+EXPOSE 80 8000
