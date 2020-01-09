@@ -52,11 +52,4 @@ COPY scheduler /etc/cron.d/scheduler
 # Run the cron
 RUN crontab /etc/cron.d/scheduler
 
-# Copy start script
-COPY start.sh .
-RUN chmod +x ./start.sh
-
-# Default command
-ENTRYPOINT ["start.sh"]
-
 EXPOSE 80 8000
