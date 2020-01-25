@@ -49,7 +49,16 @@ COPY supervisord.conf /etc/supervisor/conf.d/
 COPY default.conf /etc/nginx/conf.d/
 COPY scheduler /etc/cron.d/scheduler
 
+# Copy start script
+COPY start.sh /usr/local/bin/start-laravel.sh
+
+# Make start script executable
+RUN chmod +x /usr/local/bin/start-laravel.sh
+
 # Run the cron
 RUN crontab /etc/cron.d/scheduler
+
+# Default command
+ENTRYPOINT ["/usr/local/bin/start-laravel.sh"]
 
 EXPOSE 80 8000
