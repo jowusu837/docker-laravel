@@ -3,7 +3,7 @@
 cd /var/www || exit
 
 echo "Installing composer dependencies..."
-composer install --ignore-platform-reqs --no-scripts
+composer install
 
 if [ "$APP_ENV" = "local" ];then
   echo "Starting development server..."
