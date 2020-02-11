@@ -2,9 +2,6 @@
 
 cd /var/www || exit
 
-echo "Installing composer dependencies..."
-composer install
-
 if [ "$APP_ENV" = "local" ];then
   echo "Starting development server..."
   php artisan serve --host 0.0.0.0
