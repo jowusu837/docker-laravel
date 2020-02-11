@@ -21,8 +21,7 @@ RUN apt-get update && apt-get install -y \
     curl \
     supervisor \
     net-tools \
-    nginx \
-    cron
+    nginx
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
@@ -47,16 +46,12 @@ COPY laravel.ini /usr/local/etc/php/conf.d/
 COPY laravel.pool.conf /usr/local/etc/php-fpm.d/
 COPY supervisord.conf /etc/supervisor/conf.d/
 COPY default.conf /etc/nginx/conf.d/
-COPY scheduler /etc/cron.d/scheduler
 
 # Copy start script
 COPY start.sh /usr/local/bin/start-laravel.sh
 
 # Make start script executable
 RUN chmod +x /usr/local/bin/start-laravel.sh
-
-# Run the cron
-RUN crontab /etc/cron.d/scheduler
 
 # Default command
 ENTRYPOINT ["/usr/local/bin/start-laravel.sh"]
