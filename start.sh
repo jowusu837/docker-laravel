@@ -10,6 +10,12 @@ elif [ "$APP_ENV" = "testing" ];then
   php artisan config:clear
   vendor/bin/phpunit
 else
+  # Optimize config loading
+  php artisan config:cache
+
+  # Optimize route loading
+  php artisan route:cache
+
   echo "Running migrations..."
   php artisan migrate --force
 
