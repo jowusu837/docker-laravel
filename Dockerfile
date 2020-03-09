@@ -35,6 +35,10 @@ RUN docker-php-ext-install gd
 RUN pecl install xdebug
 RUN docker-php-ext-enable xdebug
 
+# Install redis
+RUN pecl install redis
+RUN docker-php-ext-enable redis
+
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
