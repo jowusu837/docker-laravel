@@ -11,7 +11,6 @@ RUN apt-get update && apt-get install -y \
     locales \
     libzip-dev \
     zlib1g-dev \
-    libonig-dev \
     vim \
     unzip \
     git \
@@ -24,7 +23,7 @@ RUN apt-get update && apt-get install -y \
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install extensions
-RUN docker-php-ext-install pdo_mysql mbstring zip exif pcntl
+RUN docker-php-ext-install pdo_mysql zip exif pcntl
 
 # Install redis
 RUN pecl install redis && docker-php-ext-enable redis
