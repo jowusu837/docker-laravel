@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install -y \
     locales \
     libzip-dev \
     zlib1g-dev \
+    libonig-dev \
     vim \
     unzip \
     git \
