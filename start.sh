@@ -19,9 +19,6 @@ else
   echo "Running migrations..."
   php artisan migrate --force
 
-  echo "Generating passpart encryption keys..."
-  php artisan passport:keys
-
   echo "Starting supervisor..."
   /usr/bin/supervisord -n -c /etc/supervisor/conf.d/supervisord.conf
 fi

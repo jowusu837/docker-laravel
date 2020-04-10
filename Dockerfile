@@ -1,6 +1,6 @@
-FROM php:7.2-fpm-stretch
+FROM php:7.3-fpm
 
-LABEL maintainer="jowusu837@gmail.com"
+LABEL maintainer="Victor J. Owusu <jowusu837@gmail.com>"
 
 # Set working directory
 WORKDIR /var/www
@@ -8,13 +8,9 @@ WORKDIR /var/www
 # Install dependencies
 RUN apt-get update && apt-get install -y \
     build-essential \
-    mysql-client \
-    libpng-dev \
-    libjpeg62-turbo-dev \
-    libfreetype6-dev \
     locales \
-    zip \
-    jpegoptim optipng pngquant gifsicle \
+    libzip-dev \
+    zlib1g-dev \
     vim \
     unzip \
     git \
@@ -26,36 +22,24 @@ RUN apt-get update && apt-get install -y \
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Install other php extensions
-RUN docker-php-ext-install pdo_mysql mbstring zip exif pcntl
-RUN docker-php-ext-configure gd --with-gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ --with-png-dir=/usr/include/
-RUN docker-php-ext-install gd
-
-# Install xdebug
-RUN pecl install xdebug
-RUN docker-php-ext-enable xdebug
-
-# Install redis
-RUN pecl install redis
-RUN docker-php-ext-enable redis
+# Install extensions
+RUN pecl install redis && \
+    docker-php-ext-install pdo_mysql mbstring zip exif pcntl && \
+    docker-php-ext-enable pdo_mysql redis
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Remove default nginx site
-RUN rm /etc/nginx/sites-enabled/default;
-
-# Copy configuration files
+# Copy required files
 COPY laravel.ini /usr/local/etc/php/conf.d/
 COPY laravel.pool.conf /usr/local/etc/php-fpm.d/
 COPY supervisord.conf /etc/supervisor/conf.d/
-COPY default.conf /etc/nginx/conf.d/
-
-# Copy start script
+COPY nginx/default.conf /etc/nginx/conf.d/
 COPY start.sh /usr/local/bin/start-laravel.sh
 
-# Make start script executable
-RUN chmod +x /usr/local/bin/start-laravel.sh
+# Setup nginx && start script
+RUN rm /etc/nginx/sites-enabled/default && \
+    chmod +x /usr/local/bin/start-laravel.sh
 
 # Default command
 ENTRYPOINT ["/usr/local/bin/start-laravel.sh"]
