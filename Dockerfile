@@ -1,4 +1,4 @@
-FROM php:7.0-fpm-stretch
+FROM php:7.4-fpm
 
 LABEL maintainer="Victor J. Owusu <jowusu837@gmail.com>"
 
