@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: False
-      :
+      matrix:
         version:
           - '7.4'
     steps:
