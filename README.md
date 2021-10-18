@@ -1,4 +1,4 @@
-# Docker of Laravel
+# Docker for Laravel
 
 [![License](https://img.shields.io/badge/license-MIT-%233DA639.svg)](https://opensource.org/licenses/MIT)
 
