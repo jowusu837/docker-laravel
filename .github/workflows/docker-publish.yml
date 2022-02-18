@@ -6,8 +6,6 @@ name: Publish Docker Image
 # documentation.
 
 on:
-  schedule:
-    - cron: '41 18 * * *'
   push:
     branches: 
       - master
