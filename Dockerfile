@@ -1,4 +1,4 @@
-FROM php:7.4.28-fpm
+FROM php:8.0-fpm
 
 LABEL maintainer="Victor J. Owusu <jowusu837@gmail.com>"
 
