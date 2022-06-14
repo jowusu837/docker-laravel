@@ -28,6 +28,12 @@ services:
     ...
 ```
 
+Or Install from the command line:
+
+```
+docker pull ghcr.io/jowusu837/docker-laravel:{version}
+```
+
 ## Testing
 The image has 3 modes configured: development, testing and production. You switch between modes using `APP_ENV` environment variable. If you are using docker compose, this will be in sync with what you already have in your `.env` file. I suggest you use docker compose locally though.
 
