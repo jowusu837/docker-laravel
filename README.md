@@ -1,3 +1,7 @@
+# Docker for Laravel
+
+[![License](https://img.shields.io/badge/license-MIT-%233DA639.svg)](https://opensource.org/licenses/MIT)
+
 This is a base image for running your laravel applications. To use this image, you simply have to create a Dockerfile in your laravel project with the following contents
 
 ```Dockerfile
@@ -22,6 +26,12 @@ services:
     environment:
       - APP_ENV=${APP_ENV}
     ...
+```
+
+Or Install from the command line:
+
+```
+docker pull ghcr.io/jowusu837/docker-laravel:{version}
 ```
 
 ## Testing
