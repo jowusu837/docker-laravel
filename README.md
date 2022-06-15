@@ -5,7 +5,7 @@
 This is a base image for running your laravel applications. To use this image, you simply have to create a Dockerfile in your laravel project with the following contents
 
 ```Dockerfile
-FROM jowusu837/laravel:latest
+FROM ghcr.io/jowusu837/docker-laravel:latest
 
 # Copy existing application directory permissions
 COPY --chown=www-data:www-data . /var/www
