@@ -16,6 +16,9 @@ else
   # Optimize route loading
   php artisan route:cache
 
+  # Cache views
+  php artisan view:cache
+
   echo "Running migrations..."
   php artisan migrate --force
 
